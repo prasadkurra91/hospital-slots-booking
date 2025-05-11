@@ -1,0 +1,50 @@
+<div class="p-6 max-w-xl mx-auto">
+  <h1 class="text-2xl font-bold mb-4">Book Appointment</h1>
+
+  <form [formGroup]="appointmentForm" (ngSubmit)="submitAppointment()" class="space-y-4">
+    <div>
+      <label class="block text-gray-700 font-medium mb-1">Patient Name</label>
+      <input
+        formControlName="patientName"
+        type="text"
+        class="w-full border p-2 rounded"
+        placeholder="Enter your full name"
+      />
+      <div *ngIf="appointmentForm.get('patientName')?.invalid && appointmentForm.get('patientName')?.touched"
+           class="text-red-500 text-sm">
+        Name is required.
+      </div>
+    </div>
+
+    <div>
+      <label class="block text-gray-700 font-medium mb-1">Contact Number</label>
+      <input
+        formControlName="contactNumber"
+        type="tel"
+        class="w-full border p-2 rounded"
+        placeholder="10-digit mobile number"
+      />
+      <div *ngIf="appointmentForm.get('contactNumber')?.invalid && appointmentForm.get('contactNumber')?.touched"
+           class="text-red-500 text-sm">
+        Enter a valid 10-digit number.
+      </div>
+    </div>
+
+    <div>
+      <label class="block text-gray-700 font-medium mb-1">Selected Time Slot</label>
+      <input
+        formControlName="slot"
+        type="text"
+        class="w-full border p-2 rounded bg-gray-100 cursor-not-allowed"
+      />
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="appointmentForm.invalid"
+      class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+    >
+      Confirm Appointment
+    </button>
+  </form>
+</div>

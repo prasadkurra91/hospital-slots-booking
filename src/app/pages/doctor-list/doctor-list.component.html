@@ -1,0 +1,29 @@
+
+<div class="p-6  ">
+  <h1 class="text-2xl font-bold mb-6">Available Doctors</h1>
+
+  <div *ngIf="doctors$ | async as doctors; else loading">
+    <div *ngIf="doctors.length > 0; else noDoctors" class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div *ngFor="let doctor of doctors" class="border rounded-2xl p-4 shadow-md hover:shadow-lg transition">
+        <h2 class="text-xl font-semibold">{{ doctor.name }}</h2>
+        <p class="text-gray-600">{{ doctor.specialty }}</p>
+        <p class="text-sm text-gray-500">Experience: {{ doctor.experience }} years</p>
+        <button
+          class="mt-4 bg-green-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded"
+          [routerLink]="['/doctor', doctor.id]"
+        >
+          View Profile
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <p class="text-gray-500">Loading doctors...</p>
+  </ng-template>
+
+  <ng-template #noDoctors>
+    <p class="text-red-500">No doctors available at the moment.</p>
+  </ng-template>
+</div>
+

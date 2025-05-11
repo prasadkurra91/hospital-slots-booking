@@ -1,0 +1,37 @@
+<div class="p-6 max-w-3xl mx-auto">
+  <ng-container *ngIf="doctor; else loading">
+    <div class="border rounded-2xl p-6 shadow-lg">
+      <h1 class="text-3xl font-bold mb-2">{{ doctor.name }}</h1>
+      <p class="text-lg text-gray-700 mb-1"><strong>Specialty:</strong> {{ doctor.specialty }}</p>
+      <p class="text-gray-600 mb-1"><strong>Experience:</strong> {{ doctor.experience }} years</p>
+      <p class="text-gray-600 mb-1"><strong>Location:</strong> {{ doctor.location }}</p>
+      <p class="text-gray-700 mt-4 mb-4"><strong>Bio:</strong> {{ doctor.bio }}</p>
+
+      <div>
+        <h2 class="text-xl font-semibold mb-2">Available Time Slots:</h2>
+        <div class="space-y-2">
+          <div *ngFor="let slot of doctor.availableSlots" class="flex justify-between items-center border p-3 rounded">
+            <!-- <span class="text-gray-700 font-medium">{{ slot }}</span> -->
+
+            <button
+            class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
+            (click)="bookSlot(slot)"
+          >
+            {{ slot }}
+          </button>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-1 px-4 rounded"
+              (click)="bookSlot(slot)"
+            >
+              Book Appointment
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #loading>
+    <p class="text-gray-500">Loading doctor details...</p>
+  </ng-template>
+</div>
